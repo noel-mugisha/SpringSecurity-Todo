@@ -1,8 +1,8 @@
 package com.demo.springsec_todo_app.services;
 
-import com.demo.springsec_todo_app.dto.AuthenticateUserDTO;
+import com.demo.springsec_todo_app.dto.AuthenticateUserRequest;
 import com.demo.springsec_todo_app.dto.AuthenticationResponse;
-import com.demo.springsec_todo_app.dto.RegisterUserDTO;
+import com.demo.springsec_todo_app.dto.RegisterUserRequest;
 import com.demo.springsec_todo_app.enums.Role;
 import com.demo.springsec_todo_app.models.User;
 import com.demo.springsec_todo_app.repository.UserRepository;
@@ -22,7 +22,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse registerUser (RegisterUserDTO userDTO) {
+    public AuthenticationResponse registerUser (RegisterUserRequest userDTO) {
         User user = User.builder()
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
@@ -38,7 +38,7 @@ public class AuthService {
                 .build();
     }
 
-    public AuthenticationResponse authenticateUser (AuthenticateUserDTO userDTO) {
+    public AuthenticationResponse authenticateUser (AuthenticateUserRequest userDTO) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword())
         );
