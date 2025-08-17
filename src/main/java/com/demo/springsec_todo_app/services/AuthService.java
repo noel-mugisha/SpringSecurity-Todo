@@ -47,7 +47,7 @@ public class AuthService {
         String token = jwtService.generateToken(new UserPrincipal(user));
 
         return AuthenticationResponse.builder()
-                .message("Successfull Login!...")
+                .message("Successful Login!...")
                 .token(token)
                 .build();
     }
